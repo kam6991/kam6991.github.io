@@ -1,118 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-     <meta charset="UTF-8">
-     <title>Kamil's Site</title>
-     <link rel="stylesheet" type="text/css" href="css/main.css">
-</head> 
+	<meta charset="UTF-8">
+	<title>Monk's Café</title>
 
-<body>
- <center>
-   <h1>Kamil's cafe</h1>
-   <h3>"Coffee n snacks"</h3>
-   
-   <img src="cafeimg.jpg" alt="Your image cafeimg.jpeg will go here" height=400px width=700px>
-   <br>    
-   
-   <h3>Reservations</h3>
-   <div id="tablediv">
-     <div id="tablediv1" align="center">
-      <h4>Make a reservation</h4>  
-      <table cellpadding="10" width="350px">
-       <tr >
-        <td >Name</td>
-        <td><input type="text" name="name" size="32"/></td>
-       </tr>
-       <tr>
-        <td>Day</td>
-        <td><input type="text" name="day" size="32"/></td>
-       </tr>
-       <tr>
-        <td colspan=2 align="center"><input type="button" value="Confirm" class="button"/></td>
-       </tr>
-      </table>
-      </div>
-      <div id="gapdiv"></div>
-      <div id="tablediv2" align="center" >
-      <h4>Existing reservation </h4>
-      <table width="350px" class="tdtrtable">
-        <tr>
-        <td align="center">
-         <table width="350px" class="table">
-         <tr >
-          <td> Name
-          </td>
-          <td>Day
-          </td>
-         </tr> 
-         <tr >
-          <td>
-          </td>
-          <td>
-          </td>
-         </tr> 
-         <tr >
-          <td>
-          </td>
-          <td>
-          </td>
-         </tr> 
-         <tr >
-          <td>
-          </td>
-          <td>
-          </td>
-         </tr> 
-         <tr >
-          <td>
-          </td>
-          <td>
-          </td>
-         </tr> 
-         <tr >
-          <td>
-          </td>
-          <td>
-          </td>
-         </tr>    
-         </table>
-        </td>
-       </tr>
-      </table>
-      </div>
-   </div>
-   <br> 
-   
-   <h3>Come Dine with Us</h3>
-   <div id="map">
-       map would go here
-   </div>
-   <br>    
-   
-   <h3>Customer Reviews</h3>
-   <table width=60% class="table">
-    <tr>
-    <td align="center" width=350px><div id="graph">Customer review block</div></td>
-    <td align="center" width=350px>Reviews</td>
-    <td>  </td>
-    </tr>
-   </table>
-  </center>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 
+	<link rel="stylesheet" href="css/style.css">
 
+</head>
+<body data-spy="scroll" data-target=".navbar-inverse" data-offset="50">
 
+	<!-- template for reservation-list -->
+	<script id="reservation-template" type="text/x-handlebars-template">
+		<tr>
+			<td>{{name}}</td>
+			<td>{{day}}</td>
+		</tr>
+	</script>
 
+	<!-- navbar -->
+	<div id="navbar" class="navbar-collapse navbar-inverse collapse navbar-fixed-top">
+		<a href="#" class="navbar-brand">Monk's Café</a>
+		<ul class="nav navbar-nav navbar-right">
+		  <li class="active"><a href="#reservation">Reservation</a></li>
+		  <li><a href="#map">Map</a></li>
+		</ul>
+	</div>
+
+	<div class="container-fluid restaurant-pic">
+		<div class="row">
+			<div class="col-md-12"></div>
+		</div>
+	</div>
+
+	<div id="reservation" class="container-fluid reservation">
+
+		<!-- reservation form -->
+		<div class="row reservation-form-container">
+			<div class="col-md-12 text-center reservation-form">
+				<form class="form-inline reservations">
+				  <div class="form-group">
+				    <input type="text" class="form-control reservation-name" placeholder="Jane Doe">
+				  </div>
+				  <div class="form-group">
+						<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+						    Select A Day
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu reservation-day">
+						    <li><a>Today</a></li>
+						    <li><a>Tomorrow</a></li>
+						    <li><a>The day after next</a></li>
+						  </ul>
+						</div>
+				  </div>
+				  <button class="btn btn-default reservation-button">Set Reservation</button>
+				</form>
+			</div>
+		</div>
+
+		<!-- reservations -->
+		<table class="table table-striped col-md-12 container-fluid">
+			<h4>Reservations</h4>
+			<thead>
+				<th>Name</th>
+				<th>Day</th>
+			</thead>
+			<tbody class="reservation-list"></tbody>
+		</table>
+	</div>
+
+	<div id="map" class="container-fluid restaurant-locator">
+	</div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  <!-- bootstrap js -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- handlebars -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+  <!-- custom js -->
+  <script src="js/main.js"></script>
+
+	<!-- google maps -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs&callback=initMap"
+  async defer></script>
 </body>
-
-
-
-	<script src="js/jquery-3.0.0.js"></script>   <!---jquery -->
-	<script src="js/main.js"></script>      <!---main js -->
-
-<!---Google Maps script --> 
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASPsX3OqJ-Vki-Z-j9SX66zGJUtwrfB_U&callback=initMap"></script>
-
-<!--- End google map script -->
-
 </html>
